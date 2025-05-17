@@ -25,13 +25,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, width = "max-w
 
   return (
     <div
-      className={`fixed inset-0 bg-[#0000006e] bg-opacity-50 flex items-center transition-opacity duration-300 z-40 overflow-auto p-5 ${
+      className={`fixed inset-0 bg-[#0000006e] dark:bg-[#252525bb] bg-opacity-50 flex items-center transition-opacity duration-300 z-40 overflow-auto p-5 ${
         show ? "opacity-100" : "opacity-0"
       }`}
       onClick={onClose}
     >
       <div
-        className={`m-auto bg-white rounded-lg shadow-lg transform transition-transform duration-300 ${
+        className={`m-auto bg-white dark:bg-black rounded-lg shadow-lg transform transition-transform duration-300 ${
           show ? "scale-100 opacity-100" : "scale-95 opacity-0"
         } w-full ${width} overflow-hidden`}
         onClick={(e) => e.stopPropagation()}

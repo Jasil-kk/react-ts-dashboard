@@ -18,7 +18,7 @@ const CancelButton: React.FC<CancelButtonProps> = ({
       type={type}
       disabled={disabled}
       onClick={onClick}
-      className="w-28 h-10 bg-slate-100 hover:bg-slate-200 transition-all rounded-sm text-sm font-semibold text-gray-800 cursor-pointer disabled:cursor-not-allowed disabled:opacity-75 disabled:hover:bg-slate-100"
+      className="w-28 h-10 bg-slate-100 hover:bg-slate-200 dark:bg-[#1d1c1c] dark:hover:bg-[#353434] transition-all rounded-sm text-sm font-semibold text-gray-800 dark:text-slate-300 cursor-pointer disabled:cursor-not-allowed disabled:opacity-75 disabled:hover:bg-slate-100"
     >
       {text}
     </button>

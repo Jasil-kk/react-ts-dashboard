@@ -9,7 +9,6 @@ interface FormState {
 const useSettings = () => {
   const { name, email, updateProfile } = useUser();
 
-  // Initialize form state with name and email, fallback to empty strings if undefined
   const [form, setForm] = useState<FormState>({
     name: name || "",
     email: email || "",

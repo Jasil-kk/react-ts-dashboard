@@ -1,7 +1,7 @@
 import React from "react";
 import useDashboard from "./useDashboard";
 import CustomersIcon from "../../assets/icons/CustomersIcon";
-import CountCard from "../../components/CountCard";
+import CountCard from "./CountCard";
 
 interface CountItem {
   label: string;
