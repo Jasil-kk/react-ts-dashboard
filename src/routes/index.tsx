@@ -7,6 +7,8 @@ import Loader from "../components/Loader/Loader";
 const NotFound = lazy(() => import("../pages/NotFound/NotFound"));
 const MainLayout = lazy(() => import("../layouts/MainLayout"));
 const Dashboard = lazy(() => import("../pages/Dashboard/Dashboard"));
+const Users = lazy(() => import("../pages/Users/Users"));
+const Settings = lazy(() => import("../pages/Settings/Settings"));
 const Login = lazy(() => import("../pages/auth/Login"));
 
 const MainRoute: FC = () => {
@@ -18,24 +20,31 @@ const MainRoute: FC = () => {
           element={<Navigate to={ROUTES.PRIVATE.DASHBOARD} replace />}
         />
 
-        <Route path={ROUTES.PRIVATE.DASHBOARD} element={<MainLayout />}>
+        <Route path={ROUTES.PRIVATE.BASE} element={<MainLayout />}>
           <Route
-            index
+            path={ROUTES.PRIVATE.DASHBOARD}
             element={
               <Suspense fallback={<Loader />}>
                 <Dashboard />
               </Suspense>
             }
           />
-          {/* Uncomment and add other nested routes here if needed */}
-          {/* <Route
-            path={ROUTES.PRIVATE.LATEST_INNOVATIONS}
+          <Route
+            path={ROUTES.PRIVATE.USERS}
             element={
               <Suspense fallback={<Loader />}>
-                <LatestInnovations />
+                <Users />
               </Suspense>
             }
-          /> */}
+          />
+          <Route
+            path={ROUTES.PRIVATE.SETTINGS}
+            element={
+              <Suspense fallback={<Loader />}>
+                <Settings />
+              </Suspense>
+            }
+          />
         </Route>
 
         <Route

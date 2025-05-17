@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import eyeOpen from "@assets/svg/eye-open.svg";
 import eyeClose from "@assets/svg/eye-close.svg";
 import useAuth from "./useAuth";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
   const { formik, error, showPassword, setShowPassword } = useAuth();
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("auth-token");
+    if (token) {
+      navigate("/");
+    }
+  }, [navigate]);
   return (
     <div
-      className={`w-full h-full flex items-start justify-center py-10 px-[5%] overflow-auto bg-[#FAFAFA]`}
+      className={`w-full min-h-screen flex items-start justify-center py-10 px-[5%] overflow-auto bg-[#ecebeb]`}
     >
-      <div className="my-auto flex flex-col items-center">
-        <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
+      <div className="my-auto flex flex-col items-center w-full max-w-[380px]">
+        <div className="w-full bg-white rounded-lg shadow-2xl">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="mb-10 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
               Sign in
@@ -24,9 +33,9 @@ const Login: React.FC = () => {
               <div>
                 <label
                   htmlFor="username"
-                  className="block mb-2 text-sm font-medium text-gray-900"
+                  className="block mb-1 text-sm font-medium text-gray-900"
                 >
-                  Your username
+                  Username
                 </label>
                 <input
                   type="text"
@@ -38,7 +47,6 @@ const Login: React.FC = () => {
                   onChange={formik.handleChange}
                   disabled={formik.isSubmitting}
                   onBlur={formik.handleBlur}
-                  autoComplete="username"
                 />
                 <p className="text-red-500 text-sm font-normal ml-2">
                   {formik.touched.username && formik.errors.username
@@ -49,7 +57,7 @@ const Login: React.FC = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900"
+                  className="block mb-1 text-sm font-medium text-gray-900"
                 >
                   Password
                 </label>
@@ -86,7 +94,7 @@ const Login: React.FC = () => {
               <button
                 type="submit"
                 disabled={formik.isSubmitting}
-                className="cursor-pointer w-full text-white bg-[#0F60FF] hover:bg-[#0b54e6] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-[#0F60FF]"
+                className="mt-5 cursor-pointer w-full text-white bg-[#0F60FF] hover:bg-[#0b54e6] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center disabled:cursor-not-allowed disabled:opacity-75 disabled:bg-[#0F60FF]"
               >
                 {formik.isSubmitting ? "Loading..." : "Sign in"}
               </button>

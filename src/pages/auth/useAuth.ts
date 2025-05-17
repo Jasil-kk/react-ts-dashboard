@@ -25,9 +25,16 @@ const useAuth = () => {
     { setSubmitting }: FormikHelpers<LoginValues>
   ) => {
     setSubmitting(true);
+  
     try {
-      navigate("/");
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+  
+      const token = `auth-token-${Date.now()}`;
+      localStorage.setItem("auth-token", token);
+  
       toast.success("Sign in successful!");
+  
+      navigate("/");
     } catch (error) {
       console.error(error);
       setError("Login failed. Please try again.");
@@ -35,6 +42,7 @@ const useAuth = () => {
       setSubmitting(false);
     }
   };
+  
 
   const formik = useFormik<LoginValues>({
     initialValues: {

@@ -31,7 +31,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
       {label && (
         <label
           htmlFor={id}
-          className="text-[#000000c0] font-medium text-sm mb-0.5"
+          className="text-[#000000c0] dark:text-[#b4b2b2c0] font-medium text-sm mb-1"
         >
           {label}
         </label>
@@ -45,7 +45,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
         onBlur={onBlur}
         disabled={disabled}
         placeholder={placeholder}
-        className="w-full h-10 px-3 text-sm bg-transparent outline-0 border border-gray-200 focus:border-[#000000] rounded-md"
+        className="w-full h-10 px-3 text-sm bg-transparent dark:bg-[#202020] outline-0 border border-gray-200 dark:border-gray-900 focus:border-[#000000] dark:focus:border-[#cfcfcf] rounded-md text-black dark:text-white"
       />
       {error && <p className="text-xs text-red-500 font-normal">{error}</p>}
     </div>

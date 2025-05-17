@@ -6,6 +6,7 @@ import CustomersIcon from "../../assets/icons/CustomersIcon";
 import SettingsIcon from "../../assets/icons/SettingsIcon";
 import LogoutIcon from "../../assets/icons/LogoutIcon";
 import type { ReactElement } from "react";
+import { useUser } from "../../context/UserContext";
 
 interface SidebarProps {
   showSidebar: boolean;
@@ -18,10 +19,11 @@ interface NavLink {
   link: string;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ showSidebar, toggleSidebar }) => {
+const Sidebar: React.FC<SidebarProps> = ({ showSidebar }) => {
+  const { darkMode } = useUser();
+
   const navigate = useNavigate();
   const location = useLocation();
-  const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navLinks: NavLink[] = [
@@ -43,6 +45,7 @@ const Sidebar: React.FC<SidebarProps> = ({ showSidebar, toggleSidebar }) => {
   ];
 
   const handleLogout = async () => {
+    localStorage.clear();
     navigate("/login");
   };
 
@@ -50,7 +53,7 @@ const Sidebar: React.FC<SidebarProps> = ({ showSidebar, toggleSidebar }) => {
     <div
       className={`${
         showSidebar ? "w-14 md:w-[200px]" : "w-14"
-      } transition-all overflow-hidden h-full bg-[#FFFFFF]`}
+      } transition-all overflow-hidden h-full bg-[#FFFFFF] dark:bg-[#0f0f0f]`}
     >
       <ul
         className={`w-full h-full overflow-auto flex flex-col gap-3 ${
@@ -64,7 +67,9 @@ const Sidebar: React.FC<SidebarProps> = ({ showSidebar, toggleSidebar }) => {
               key={index}
               onClick={() => navigate(item.link)}
               className={`w-full h-10 flex items-center list-none rounded-[6px] cursor-pointer transition-all ${
-                isActive ? `bg-[#25b09b]` : "hover:bg-slate-100"
+                isActive
+                  ? `bg-[#2584b0]`
+                  : "hover:bg-slate-100 dark:hover:bg-gray-800"
               } ${
                 showSidebar
                   ? "justify-center md:justify-start px-0 md:px-2.5 gap-0 md:gap-2.5"
@@ -87,15 +92,15 @@ const Sidebar: React.FC<SidebarProps> = ({ showSidebar, toggleSidebar }) => {
 
         <li
           onClick={() => setIsModalOpen(true)}
-          className={`mt-auto w-full h-10 flex items-center list-none rounded-[6px] cursor-pointer transition-all hover:bg-slate-100 ${
+          className={`mt-auto w-full h-10 flex items-center list-none rounded-[6px] cursor-pointer transition-all hover:bg-slate-100 dark:hover:bg-slate-900 ${
             showSidebar
               ? "justify-center md:justify-start px-0 md:px-2.5 gap-0 md:gap-2.5"
               : "px-0 justify-center gap-0"
           }`}
         >
-          <LogoutIcon />
+          <LogoutIcon color={darkMode ? "#8B909A" : "#000000"} />
           <p
-            className={`hidden md:block text-sm font-semibold transition-all whitespace-nowrap duration-300 ease-in-out ${
+            className={`hidden md:block text-sm font-semibold transition-all whitespace-nowrap duration-300 ease-in-out text-[#111111] dark:text-[#bdbcbc] ${
               showSidebar
                 ? "opacity-100 w-auto"
                 : "opacity-0 w-0 overflow-hidden"
@@ -109,7 +114,6 @@ const Sidebar: React.FC<SidebarProps> = ({ showSidebar, toggleSidebar }) => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onSubmit={handleLogout}
-        loading={loading}
       />
     </div>
   );
