@@ -9,6 +9,7 @@ export interface User {
   company: {
     name: string;
   };
+  isNew?: boolean;
 }
 
 const useUsers = () => {
@@ -18,6 +19,7 @@ const useUsers = () => {
   const [addModal, setAddModal] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [isSorted, setIsSorted] = useState<boolean>(false); // NEW state
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
@@ -50,12 +52,23 @@ const useUsers = () => {
       company: {
         name: values.company_name,
       },
+      isNew: true,
     };
 
     setUsers([newUser, ...users]);
     setAddModal(false);
     resetForm();
     setSubmitting(false);
+
+    setIsSorted(false);
+
+    setTimeout(() => {
+      setUsers((prevUsers) =>
+        prevUsers.map((user) =>
+          user.id === newUser.id ? { ...user, isNew: false } : user
+        )
+      );
+    }, 5000);
   };
 
   const UserSchema = Yup.object().shape({
@@ -74,22 +87,28 @@ const useUsers = () => {
     onSubmit: handleAddUserSubmit,
   });
 
-
   const filteredUsers = users
-  .filter((user) =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase())
-  )
-  .sort((a, b) => {
-    const nameA = a.name.toLowerCase();
-    const nameB = b.name.toLowerCase();
-    if (sortOrder === "asc") return nameA.localeCompare(nameB);
-    return nameB.localeCompare(nameA);
-  });
+    .filter((user) =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (!isSorted) {
+        if (a.isNew && !b.isNew) return -1;
+        if (!a.isNew && b.isNew) return 1;
+        return 0;
+      }
+
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+      return sortOrder === "asc"
+        ? nameA.localeCompare(nameB)
+        : nameB.localeCompare(nameA);
+    });
 
   const toggleSortOrder = () => {
     setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+    setIsSorted(true);
   };
-  
 
   return {
     users,
@@ -99,7 +118,8 @@ const useUsers = () => {
     setUsers,
     addModal,
     setAddModal,
-    formik,  searchTerm,
+    formik,
+    searchTerm,
     setSearchTerm,
     sortOrder,
     toggleSortOrder,
