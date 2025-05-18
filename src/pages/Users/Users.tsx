@@ -1,10 +1,10 @@
 import React from "react";
-import useUser from "./useUser";
 import UserCardSkeleton from "./UserCardSkeleton";
 import UserCard from "./UserCard";
 import AddButton from "../../components/Buttons/AddButton";
 import AddUser from "./AddUser";
 import SearchIcon from "../../assets/icons/SearchIcon";
+import useUsers from "./useUser";
 
 const Users: React.FC = () => {
   const {
@@ -18,7 +18,7 @@ const Users: React.FC = () => {
     setSearchTerm,
     sortOrder,
     toggleSortOrder,
-  } = useUser();
+  } = useUsers();
 
   if (error) return <p className="text-red-500">Error: {error}</p>;
 

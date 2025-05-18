@@ -45,7 +45,7 @@ const Sidebar: React.FC<SidebarProps> = ({ showSidebar }) => {
   ];
 
   const handleLogout = async () => {
-    localStorage.clear();
+    localStorage.removeItem("auth-token");
     navigate("/login");
   };
 

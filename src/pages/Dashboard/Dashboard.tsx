@@ -2,6 +2,10 @@ import React from "react";
 import useDashboard from "./useDashboard";
 import CustomersIcon from "../../assets/icons/CustomersIcon";
 import CountCard from "./CountCard";
+import PendingIcon from "../../assets/icons/PendingIcon";
+import ActiveIcon from "../../assets/icons/ActiveIcon";
+import LineChart from "./LineChart";
+import BarChart from "./BarChart";
 
 interface CountItem {
   label: string;
@@ -17,12 +21,12 @@ const Dashboard: React.FC = () => {
     {
       label: "Active Sessions",
       count: counts?.activeSessions,
-      icon: <CustomersIcon />,
+      icon: <ActiveIcon />,
     },
     {
       label: "Pending Requests",
       count: counts?.pendingRequests,
-      icon: <CustomersIcon />,
+      icon: <PendingIcon />,
     },
   ];
 
@@ -41,6 +45,12 @@ const Dashboard: React.FC = () => {
             icon={item.icon}
           />
         ))}
+      </div>
+      <div className="mt-10 w-full sm:px-[5%]">
+        <LineChart />
+      </div>
+      <div className="mt-10 w-full sm:px-[5%]">
+        <BarChart />
       </div>
     </div>
   );

@@ -17,12 +17,12 @@ const Login: React.FC = () => {
   }, [navigate]);
   return (
     <div
-      className={`w-full min-h-screen flex items-start justify-center py-10 px-[5%] overflow-auto bg-[#ecebeb]`}
+      className={`w-full min-h-screen flex items-start justify-center py-10 px-[5%] overflow-auto bg-[#ecebeb] dark:bg-[#313131]`}
     >
       <div className="my-auto flex flex-col items-center w-full max-w-[380px]">
-        <div className="w-full bg-white rounded-lg shadow-2xl">
+        <div className="w-full bg-white dark:bg-black rounded-lg shadow-2xl">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="mb-10 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
+            <h1 className="mb-10 text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-slate-50 md:text-2xl">
               Sign in
             </h1>
             <form
@@ -33,7 +33,7 @@ const Login: React.FC = () => {
               <div>
                 <label
                   htmlFor="username"
-                  className="block mb-1 text-sm font-medium text-gray-900"
+                  className="block mb-1 text-sm font-medium text-gray-900 dark:text-slate-300"
                 >
                   Username
                 </label>
@@ -41,7 +41,7 @@ const Login: React.FC = () => {
                   type="text"
                   name="username"
                   id="username"
-                  className="border border-gray-300 outline-0 text-gray-900 rounded-lg focus:border-[#0F60FF] block w-full p-2.5"
+                  className="border border-gray-300 outline-0 text-gray-900 dark:text-white rounded-lg focus:border-[#0F60FF] block w-full p-2.5"
                   placeholder="Enter username"
                   value={formik.values.username}
                   onChange={formik.handleChange}
@@ -57,7 +57,7 @@ const Login: React.FC = () => {
               <div>
                 <label
                   htmlFor="password"
-                  className="block mb-1 text-sm font-medium text-gray-900"
+                  className="block mb-1 text-sm font-medium text-gray-900 dark:text-slate-300"
                 >
                   Password
                 </label>
@@ -67,7 +67,7 @@ const Login: React.FC = () => {
                     name="password"
                     id="password"
                     placeholder="Enter password"
-                    className="border outline-0 border-gray-300 text-gray-900 rounded-lg focus:border-[#0F60FF] block w-full p-2.5"
+                    className="border outline-0 border-gray-300 text-gray-900 dark:text-white rounded-lg focus:border-[#0F60FF] block w-full p-2.5"
                     value={formik.values.password}
                     onChange={formik.handleChange}
                     disabled={formik.isSubmitting}

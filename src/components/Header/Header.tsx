@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
       <div className="flex items-center gap-8">
         <button
           onClick={toggleSidebar}
-          className="hidden md:block cursor-pointer w-fit h-fit rounded-sm hover:bg-slate-100 transition-all"
+          className="hidden md:block cursor-pointer w-fit h-fit rounded-sm hover:bg-slate-100 dark:hover:bg-slate-700 transition-all"
         >
           <MenuIcon
             color={darkMode ? "#8B909A" : "#202224"}

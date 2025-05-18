@@ -11,7 +11,7 @@ export interface User {
   };
 }
 
-const useUser = () => {
+const useUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
@@ -106,4 +106,4 @@ const useUser = () => {
   };
 };
 
-export default useUser;
+export default useUsers;

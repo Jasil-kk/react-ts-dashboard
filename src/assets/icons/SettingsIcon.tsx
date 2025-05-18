@@ -8,8 +8,8 @@ interface SettingsIconProps {
 }
 
 const SettingsIcon: React.FC<SettingsIconProps> = ({
-  width = "16px",
-  height = "16px",
+  width = "22",
+  height = "22",
   className,
   color = "#000000",
 }) => {
