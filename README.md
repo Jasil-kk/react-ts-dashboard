@@ -1,54 +1,46 @@
-# React + TypeScript + Vite
+# React Admin Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a fully Dockerized React Admin Dashboard built with Vite, React, and TypeScript. It includes routing, mock authentication, context-based theme/profile management, chart visualizations, and mock API integrations.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 🔐 **Mock Authentication** using localStorage token
+- 🧭 **React Router v6+** for route-based navigation
+- 📊 **Recharts** for data visualizations (Line and Bar charts)
+- 👥 **Users Page** with data from JSONPlaceholder, add/search/sort capabilities
+- ⚙️ **Settings Page** with dark mode toggle and profile update form
+- 🎨 **Dark Mode** preference stored in localStorage
+- 🧠 **State Management** using Context API for theme and profile
+- 🐳 **Dockerized**: Build and serve via Docker + Nginx
+- 🧹 **Clean, modular, scalable codebase**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 📁 Project Structure
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+```bash
+src/
+├── assets/               # Icons, PNGs, SVGs
+│   ├── icons/
+│   ├── png/
+│   └── svg/
+├── components/           # Reusable UI components (Card, GraphCard, etc.)
+├── context/              # Context for dark mode and profile form
+├── layouts/              # Main layout wrapper (MainLayout.tsx)
+├── pages/                # Login, Dashboard, Users, Settings
+├── routes/               # Route configuration and PrivateRoute
+├── services/             # authService.ts, apiService.ts
+├── App.tsx
+└── main.tsx
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## 🚀 Running Locally
+
+### 1. Development (Vite)
+```bash
+npm install
+npm run dev

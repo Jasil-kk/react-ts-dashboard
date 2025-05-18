@@ -27,6 +27,8 @@ const useAuth = () => {
     setSubmitting(true);
   
     try {
+      console.log("Logging in with:", values);
+      
       await new Promise((resolve) => setTimeout(resolve, 1500));
   
       const token = `auth-token-${Date.now()}`;
